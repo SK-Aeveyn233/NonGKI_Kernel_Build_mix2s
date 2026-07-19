@@ -160,7 +160,9 @@ jobs:
           KSU_LIGHTSUMMER233_VERSION=$(cd KernelSU-lightsummer233 && expr $(/usr/bin/git rev-list --count HEAD) + 10200)
           git clone -b susfs-dev https://github.com/ShirkNeko/SukiSU-Ultra.git KernelSU-SukiSU-Ultra
           KSU_SUKISU_ULTRA_VERSION=$(cd KernelSU-SukiSU-Ultra && expr $(/usr/bin/git rev-list --count HEAD) + 10200)
-
+          git clone -b main https://github.com/SK-Aeveyn233/TALIH-PD2-Kernel.git device_kernel
+          KSU_DEVICE_VERSION=$(cd device_kernel && expr $(/usr/bin/git rev-list --count HEAD) + 10200)
+          
           # Input release note
           echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
           echo "$RELEASE_NOTES" >> $GITHUB_ENV
@@ -171,7 +173,8 @@ jobs:
           echo "[KernelSU-lightsummer233](https://github.com/lightsummer233/KernelSU) Version: $KSU_LIGHTSUMMER233_VERSION  " >> $GITHUB_ENV
           echo "[KernelSU-SukiSU-Ultra](https://github.com/ShirkNeko/SukiSU-Ultra) Version: $KSU_SUKISU_ULTRA_VERSION  " >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
+          echo "[Device Kernel](https://github.com/SK-Aeveyn233/TALIH-PD2-Kernel) Version: $KSU_DEVICE_VERSION  " >> $GITHUB_ENV
+          
       # Create GitHub Release and upload files if make_release is true
       - name: Create GitHub Release
         uses: actions/create-release@v1
